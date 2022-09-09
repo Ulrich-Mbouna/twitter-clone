@@ -1,8 +1,7 @@
 import Image from "next/image";
 import SidebarMenuItem from "./SidebarMenuItem";
 import {
-    DotsHorizontalIcon,
-    HomeIcon
+     HomeIcon
 } from "@heroicons/react/solid"
 import {
     HashtagIcon,
@@ -11,13 +10,13 @@ import {
     BookmarkIcon,
     ClipboardIcon,
     DotsCircleHorizontalIcon,
-    UserIcon
+    UserIcon, DotsHorizontalIcon
 } from "@heroicons/react/outline";
 
 export default function Sidebar() {
   return (
-    <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full">
-        {/* Twiter Logo */}
+    <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full xl:ml-24">
+        {/* Twitter Logo */}
         <div className="hoverEffect p-0 hover:bg-blue-100 xl:px-1">
             <Image 
                 src="https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
