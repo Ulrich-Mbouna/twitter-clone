@@ -29,7 +29,7 @@ export default function Widgets({ newsResults, randomUsersResults }) {
             <h4 className="font-bold text-xl px-4">Who to follow</h4>
             {
                 randomUsersResults.slice(0,randomUserNumber).map((user, index) => (
-                    <div className='flex items-center px-4 py-2 cursor-pointer hover:gray-200' key={user.login.username}>
+                    <div className='flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200' key={user.login.username}>
                         <img className='rounded-full' width='40' src={user.picture.thumbnail} alt=""/>
                         <div className="truncate ml-4 leading-5">
                             <h4 className='font-bold hover:underline text-[14px]'>{user.login.username}</h4>
