@@ -19,7 +19,7 @@ export default function Feed() {
       name: "Kamo Piekam",
       username: "Kamo",
       userImg:
-        "https://media-exp1.licdn.com/dms/image/C5603AQFLXnnOmKc2CQ/profile-displayphoto-shrink_200_200/0/1640717934213?e=2147483647&v=beta&t=hyzPg1nX3O50JdYIi7cMG38rApzbeDH-izRLT7UROko",
+        "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/275664616_1517278738668214_4794277504275998867_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEjgZHM6YnO6eP7rF7LmC1VAjh4ID_T9QYCOHggP9P1Bibq-gFZgV03D67KCaJF4dCD7x1CSvu7YOHtcC-Ak5F0&_nc_ohc=jmaRf8H61oAAX9iabIm&_nc_ht=scontent-iad3-1.xx&oh=00_AT8fYjWIWNbXDgYuyGxnupQEZg8-uBWjLGUMcHdPg6qjzg&oe=63209737",
       img: "https://images.unsplash.com/photo-1647891938250-954addeb9c51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       text: "Nice friendship",
       timestamp: "2 days ago",
