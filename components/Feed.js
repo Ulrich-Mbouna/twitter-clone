@@ -1,5 +1,5 @@
 import { SparklesIcon } from "@heroicons/react/outline";
-import Index from "./Index";
+import Input from "./Input";
 import Posts from "./Posts";
 
 export default function Feed() {
@@ -33,7 +33,7 @@ export default function Feed() {
           <SparklesIcon className="h-5" />
         </div>
       </div>
-      <Index />
+      <Input />
       {posts.map((post) => (
         <Posts key={post.id} post={post} />
       ))}
