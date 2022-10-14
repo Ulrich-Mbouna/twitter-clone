@@ -50,7 +50,9 @@ export default function Posts({ post }) {
   async function deletePost() {
     if(window.confirm("Are you sure you want to delete this post?")) {
       await deleteDoc(doc(db, "posts", post.id));
-      await deleteObject(ref(storage, `posts/${post.id}/image`))
+      if(post.data().image) {
+        await deleteObject(ref(storage, `posts/${post.id}/image`))
+      }
     }
 
   }
@@ -88,7 +90,9 @@ export default function Posts({ post }) {
           {post.data().text}
         </p>
         {/* Post image */}
-        <img className="rounded-2xl mr-2" src={post.data().image} alt="post image" />
+        { post.data()?.image && (
+            <img className="rounded-2xl mr-2" src={post.data().image} alt="post image" />
+        )}
         {/* Icons */}
         <div className="flex justify-between items-center text-gray-500 p-2">
           <ChatIcon className="h-9 hoverEffect w-9 p-2 hover:text-sky-500 hover:bg-sky-100" />
