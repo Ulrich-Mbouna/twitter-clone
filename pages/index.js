@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Sidebar from '../components/Sidebar'
 import Feed from '../components/Feed'
-import Widgets from '../components/Widgets'
+import Widgets from '../components/Widgets';
+import CommentModal from '../components/CommentModal'
 
 export default function Home({ newsResults, randomUsersResults }) {
   return ( <
@@ -30,6 +31,7 @@ export default function Home({ newsResults, randomUsersResults }) {
 
         {
           /* Modals */ }
+          <CommentModal />
       </main>
 
       
