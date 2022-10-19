@@ -5,10 +5,11 @@ import Modal from "react-modal"
 import { XIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import {collection, doc, onSnapshot, serverTimestamp, addDoc} from "firebase/firestore";
 import Moment from "react-moment";
 import { signOut, useSession } from "next-auth/react";
 import { EmojiHappyIcon, PhotographIcon } from "@heroicons/react/outline";
+import {useRouter} from "next/router";
 
 export default function CommentModal() {
     const [open, setOpen] = useRecoilState(modalState);
@@ -17,7 +18,7 @@ export default function CommentModal() {
     const [input, setInput] = useState("");
     const [selectedFile, setSelectedFile] = useState("");
     const { data: session } = useSession();
-
+    const router = useRouter();
 
     useEffect(() => {
         onSnapshot(doc(db, "posts", postId), (snapshot) => {
@@ -25,8 +26,18 @@ export default function CommentModal() {
         });
     }, [postId, db])
 
-    const sendComment = () => {
+    const sendComment = async () => {
+        await addDoc(collection(db, "posts", postId, "comments"), {
+            comment: input,
+            name: session.user.name,
+            username: session.user.username,
+            userImg: session.user.image,
+            timestamp: serverTimestamp()
+        })
 
+        setOpen(false);
+        setInput("");
+        await router.push(`posts/${postId}`)
     }
 
     return (

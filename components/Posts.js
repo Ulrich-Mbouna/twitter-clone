@@ -23,6 +23,8 @@ export default function Posts({ post }) {
   const [hasLiked, setHasLiked ] = useState(false);
   const [open, setOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdlState);
+  const [comments, setComments] = useState([]);
+
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
@@ -31,6 +33,13 @@ export default function Posts({ post }) {
         }
     )
   },[db])
+
+  //Nombres de commentaire
+  useEffect(() => {
+    const unSubscribe = onSnapshot(collection(db, "posts",post.id, "comments" ), (snapshot) => {
+      setComments(snapshot.docs)
+    })
+  }, [comments]);
 
   useEffect(() => {
     setHasLiked(likes.findIndex((like) => like.id === session?.user.uid) !== -1)
@@ -71,7 +80,7 @@ export default function Posts({ post }) {
       />
 
       {/* Right side */}
-      <div className="">
+      <div className="flex-1">
         {/* Header */}
 
         <div className="flex items-center justify-between">
@@ -99,17 +108,22 @@ export default function Posts({ post }) {
         )}
         {/* Icons */}
         <div className="flex justify-between items-center text-gray-500 p-2">
-          <ChatIcon
-              onClick={async () => {
-                if(!session) {
-                  await signIn()
-                }
-                else {
-                  setPostId(post.id);
-                  setOpen(!open);
-                }
-              }}
-              className="h-9 hoverEffect w-9 p-2 hover:text-sky-500 hover:bg-sky-100" />
+          <div className="flex items-center justify-center select-none">
+            <ChatIcon
+                onClick={async () => {
+                  if(!session) {
+                    await signIn()
+                  }
+                  else {
+                    setPostId(post.id);
+                    setOpen(!open);
+                  }
+                }}
+                className="h-9 hoverEffect w-9 p-2 hover:text-sky-500 hover:bg-sky-100" />
+            { comments.length > 0 && (
+                <span>{ comments.length }</span>
+            )}
+          </div>
           { session?.user.uid === post?.data().id && (
               <TrashIcon
                   onClick={deletePost}
