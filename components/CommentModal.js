@@ -37,7 +37,7 @@ export default function CommentModal() {
 
         setOpen(false);
         setInput("");
-        await router.push(`posts/${postId}`)
+        await router.push(`/posts/${postId}`)
     }
 
     return (
