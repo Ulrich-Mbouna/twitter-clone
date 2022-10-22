@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import Comment from "../../components/Comment";
 import {collection, doc, onSnapshot, orderBy, query} from "firebase/firestore";
 import {db} from "../../firebase";
+import {AnimatePresence, motion} from "framer-motion";
 
 export default function PostDetail({ newsResults, randomUsersResults }) {
     const router = useRouter();
@@ -53,19 +54,28 @@ export default function PostDetail({ newsResults, randomUsersResults }) {
                         </div>
                         <h2 className="text-lg sm:text-xl font-bold cursor-pointer"> Tweet </h2>
                     </div>
-
                     <Post id={ id } post={post} />
+                    <AnimatePresence>
                     { comments.length > 0 && (
                         <div>
                             {
                                 comments.map((comment) => (
-                                    <Comment key={comment.id} commentId={comment.id}
-                                             originalPostId={ id}
-                                             comment={comment.data()} />
+                                    <motion.div
+                                        key={comment.id}
+                                        initial={{opacity: 0}}
+                                        animate={{opacity:1}}
+                                        exit={{opacity:0}}
+                                        transition={{ duration: 1}}
+                                    >
+                                        <Comment key={comment.id} commentId={comment.id}
+                                                 originalPostId={ id}
+                                                 comment={comment.data()} />
+                                    </motion.div>
                                 ))
                             }
                         </div>
                     )}
+                    </AnimatePresence>
                 </div>
 
                 {
