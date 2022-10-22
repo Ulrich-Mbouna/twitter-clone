@@ -59,7 +59,9 @@ export default function PostDetail({ newsResults, randomUsersResults }) {
                         <div>
                             {
                                 comments.map((comment) => (
-                                    <Comment key={comment.id} id={comment.id} comment={comment.data()} />
+                                    <Comment key={comment.id} commentId={comment.id}
+                                             originalPostId={ id}
+                                             comment={comment.data()} />
                                 ))
                             }
                         </div>
